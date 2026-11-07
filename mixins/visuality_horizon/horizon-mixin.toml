@@ -6,11 +6,15 @@
 # version is declared on purpose.
 [mod]
 id = "visuality_horizon"
-version = "1.0.2"
+version = "1.0.3"
 priority = 100
 
 [compatibility]
-horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
+# 1.0.3: Horizon 6475f62 (Nightly 2026-11-04) moved `animate_tick` and `mobs`
+# into horizon-client-lib; the two private-function injections that named
+# `horizon_client::animate_tick::...` / `horizon_client::mobs::...` now name
+# `horizon_client_lib::...`. Same functions, same signatures.
+horizon_revision = "6475f62f3c834b7489e1816bf47f47ea5eb2b879"
 
 # The effect engine: rules, particles, settings and the wgpu drawing. It hangs
 # off the renderer crate so the world-drawn hook can reach it; the game crate
@@ -143,7 +147,7 @@ bindings = []
 [[injection]]
 id = "ambient"
 kind = "HEAD"
-target = "horizon_client::animate_tick::block_animate_tick"
+target = "horizon_client_lib::animate_tick::block_animate_tick"
 helper = "ambient.rs"
 bindings = [
   { name = "ctx", ty = "&AnimateContext<'_>", value = "ctx" },
@@ -156,6 +160,6 @@ bindings = [
 id = "slime"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client::mobs::cube::client_tick"
+target = "horizon_client_lib::mobs::cube::client_tick"
 helper = "slime.rs"
 bindings = [{ name = "m", ty = "&mut Mob", value = "&mut *m" }]

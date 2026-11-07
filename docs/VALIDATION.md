@@ -2,6 +2,19 @@
 
 Every row says what was actually run, where, and with what result. "Not run" rows are open.
 
+## 1.0.3 — port to Horizon Nightly 2026-11-04 (`6475f62`)
+
+| Check | Result |
+|---|---|
+| `horizon-mixins apply` against the pinned 6475f62 source (staging copy under /tmp, `horizon-native.json` with `mixins` `ddd9700b21997c95d95ac6ee5ecafe3830cf622a`) | pass: `{"status":"ok","injections":14,"modules":2,"crates":1,"seconds":9.8}`; `visuality_ambient` spliced into `animate_tick.rs`, `visuality_slime` into `mobs/cube.rs` |
+| Injection retarget | `horizon_client::animate_tick::block_animate_tick` → `horizon_client_lib::animate_tick::block_animate_tick` (module moved into horizon-client-lib); `horizon_client::mobs::cube::client_tick` → `horizon_client_lib::mobs::cube::client_tick`. Signatures unchanged |
+| Other injections audited | `handle_packet`, `spawn_entity`, `remove_entity`, `leave_server`, `enter_remote_dimension` (all in `horizon_client::game::remote`) exist unchanged; hooks `tick`, `frame`, `mods`, `settings`, `settings_click`, `world_drawn`, `render_needs` all present in `native-hooks.json` |
+| In game | Not run on this pin yet |
+
+## 1.0.2 and earlier
+
+The record below is for the `c9d474d` pin and applies to 1.0.2 and earlier; it is kept as history.
+
 ## Environment
 
 | Item | Value |

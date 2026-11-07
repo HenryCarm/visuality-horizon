@@ -25,7 +25,7 @@ Charged creeper sparks, amethyst sparkles on full clusters, armor glints on gold
 
 Low preset by default, for integrated GPUs; Balanced and High add density. Settings in Options > Mods > Visuality, lists in config/visuality_horizon.toml.
 Client only: it sends nothing to the server and needs nothing installed there. Tested in single player on Windows; LAN, servers, Linux and macOS are not tested yet (see docs/VALIDATION.md).
-Pinned to Horizon c9d474d (Nightly 2026-11-01): it hooks private client functions, so it builds on that commit only.
+Pinned to Horizon 6475f62 (Nightly 2026-11-04): it hooks private client functions, so it builds on that commit only.
 Not made or endorsed by Visuality's author."""
 
 
@@ -60,7 +60,7 @@ published = "{a.published}"
 game = "{m["game"]}"
 file = "{listing["file"]}"
 sha256 = "{listing["sha256"]}"
-changelog = "First release, for Horizon Nightly 2026-11-01 (c9d474d). 1.0.1: entity pass skips entities out of reach (client tick 20-31 us instead of 71-157 us); package entries stored, so the file is byte-identical whatever Python builds it. 1.0.2: atlas and notices carried as Rust source, so the bundle holds only .rs and .toml files."
+changelog = "First release, for Horizon Nightly 2026-11-01 (c9d474d). 1.0.1: entity pass skips entities out of reach (client tick 20-31 us instead of 71-157 us); package entries stored, so the file is byte-identical whatever Python builds it. 1.0.2: atlas and notices carried as Rust source, so the bundle holds only .rs and .toml files. 1.0.3: port to Horizon Nightly 2026-11-04 (6475f62); the ambient block-pass injection retargeted to `horizon_client_lib::animate_tick::block_animate_tick` and the slime landing injection to `horizon_client_lib::mobs::cube::client_tick` (Horizon moved `animate_tick` and `mobs` into horizon-client-lib). mixins revision ddd9700."
 '''
     out = ROOT / "dist" / "registry" / "mods" / f"{m['id']}.toml"
     out.parent.mkdir(parents=True, exist_ok=True)

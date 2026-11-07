@@ -1,7 +1,15 @@
 # Architecture and integration map
 
-Pinned source: Horizon `c9d474dd9116e84c243f8992d75c11314df56f06` (Nightly 2026-11-01), horizon-mixins
-`a2af5c0`, `NATIVE_HOOKS_API` 80, Rust 1.99.1 (the launcher's), wgpu 30.0.1.
+Pinned source: Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879` (Nightly 2026-11-04), horizon-mixins
+`ddd9700b21997c95d95ac6ee5ecafe3830cf622a`, `NATIVE_HOOKS_API` 359, Rust 1.99.1 (the launcher's), wgpu 30.0.1.
+
+1.0.3 ported the pin from `c9d474d` (Nightly 2026-11-01). Horizon moved `animate_tick` and `mobs` into
+`horizon-client-lib` (their lib path is `crates/horizon-client/src/client_lib.rs`), so the ambient
+block-pass injection now names `horizon_client_lib::animate_tick::block_animate_tick` and the slime
+landing injection now names `horizon_client_lib::mobs::cube::client_tick`. The functions themselves are
+unchanged: same names, same parameters, same bodies at the call sites the mod patches. All other targets
+(`horizon_client::game::remote::Game<'_>::handle_packet`, `::spawn_entity`, `::remove_entity`,
+`::leave_server`, `::enter_remote_dimension`) and the stable hook points resolve unchanged on 6475f62.
 
 ## Decision
 

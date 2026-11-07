@@ -1,7 +1,7 @@
 # Performance
 
 Reference machine: Windows 11 laptop, Intel UHD Graphics 620 (integrated), Vulkan. 2560×1440,
-render distance 12, Low preset (the default). Build: native-c9d474d (performance profile).
+render distance 12, Low preset (the default). Build: native-c9d474d (performance profile; 1.0.2 and earlier).
 
 ## BENCH-MIX: the fixture lane
 
